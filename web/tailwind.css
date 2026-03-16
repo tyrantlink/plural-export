@@ -1,0 +1,115 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+@plugin "daisyui";
+
+@source '../src/**/*.rs';
+
+@layer base {
+  button:not([disabled]),
+  [role="button"]:not([disabled]) {
+    cursor: pointer;
+  }
+}
+
+:root {
+  --radius: 0.625rem;
+  --transition: 200ms ease;
+}
+
+html[data-theme="white"] {
+  --bg: oklch(1 0 0);
+  --fg: oklch(0.145 0 0);
+  --muted-fg: oklch(0.556 0 0);
+  --border: oklch(0.922 0 0);
+  --header-bg: oklch(0.97 0 0);
+  --panel-bg: oklch(0.98 0 0);
+  --input-bg: oklch(1 0 0);
+  --primary-btn-bg: linear-gradient(to right, #6366f1, #8b5cf6);
+  --primary-btn-fg: #ffffff;
+  --ghost-hover-bg: oklch(0.97 0 0);
+}
+
+html[data-theme="light"] {
+  --bg: linear-gradient(to bottom right, #d1fae5, #f3e8ff, #ccfbf1);
+  --fg: #171717;
+  --muted-fg: #71717a;
+  --border: rgba(228, 228, 231, 0.6);
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --panel-bg: rgba(255, 255, 255, 0.7);
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --primary-btn-bg: linear-gradient(to right, #6366f1, #8b5cf6);
+  --primary-btn-fg: #ffffff;
+  --ghost-hover-bg: rgba(228, 228, 231, 0.5);
+}
+
+html,
+html[data-theme="dark"] {
+  --bg: linear-gradient(to bottom right, #022c22, #2e1065, #042f2e);
+  --fg: #f0f6fc;
+  --muted-fg: #8b949e;
+  --border: rgba(48, 54, 61, 0.8);
+  --header-bg: rgba(22, 27, 34, 0.95);
+  --panel-bg: rgba(22, 27, 34, 0.6);
+  --input-bg: rgba(13, 17, 23, 0.8);
+  --primary-btn-bg: linear-gradient(to right, #9e1449, #7d0f3f);
+  --primary-btn-fg: #ffffff;
+  --ghost-hover-bg: rgba(33, 38, 45, 0.8);
+  --color-primary: #9e1449;
+}
+
+html[data-theme="black"] {
+  --bg: oklch(0.145 0 0);
+  --fg: oklch(0.985 0 0);
+  --muted-fg: oklch(0.708 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --header-bg: oklch(0.205 0 0);
+  --panel-bg: oklch(0.18 0 0);
+  --input-bg: oklch(0.12 0 0);
+  --primary-btn-bg: linear-gradient(to right, #9e1449, #7d0f3f);
+  --primary-btn-fg: #ffffff;
+  --ghost-hover-bg: oklch(0.269 0 0);
+  --color-primary: #9e1449;
+}
+
+html {
+  @apply h-full overflow-hidden text-base;
+}
+
+body {
+  @apply text-[color:var(--fg)] h-full relative transition-[color] duration-[var(--transition)] before:content-[""] before:fixed before:-z-10 before:pointer-events-none before:inset-0;
+  font-family: "Geist", "Segoe UI", sans-serif;
+}
+
+body::before {
+  background: var(--bg);
+}
+
+.format-select {
+  @apply text-base text-[color:var(--fg)] border border-[color:var(--border)] rounded-[var(--radius)] cursor-pointer transition-[border-color] duration-[var(--transition),background] ease-[var(--transition)] p-2 border-solid;
+  background: var(--input-bg);
+  outline: none;
+}
+
+.text-box {
+  @apply flex-1 w-full min-h-0 text-[color:var(--fg)] border border-[color:var(--border)] rounded-[var(--radius)] text-[0.8rem] leading-normal resize-none transition-[border-color] duration-[var(--transition),background] ease-[var(--transition)] p-3 border-solid;
+  background: var(--input-bg);
+  font-family: "Geist Mono", "JetBrains Mono", "Fira Code", monospace;
+  outline: none;
+}
+
+@keyframes theme-icon-spin {
+  from {
+    transform: rotate(-90deg) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .converter {
+    @apply grid-cols-[1fr];
+  }
+}

@@ -1,0 +1,22 @@
+[package]
+name = "plural-export-web"
+version = "0.1.0"
+edition = "2024"
+
+[lints]
+workspace = true
+
+[features]
+default = ["web"]
+web = ["dioxus/web", "dep:web-sys", "dep:wasm-bindgen"]
+server = ["dioxus/server"]
+
+[dependencies]
+plural-export = { workspace = true }
+
+daisy_rsx = { version = "0.1.56" }
+dioxus = { version = "0.7.1", features = ["router", "fullstack"] }
+dioxus-free-icons = { version = "0.10.0", features = ["font-awesome-brands", "font-awesome-regular", "font-awesome-solid", "lucide"] }
+serde_json = { version = "1.0" }
+wasm-bindgen = { version = "0.2", optional = true }
+web-sys = { version = "0.3.91", optional = true, features = ["Storage", "Window"] }

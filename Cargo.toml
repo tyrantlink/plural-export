@@ -1,8 +1,9 @@
 [workspace]
 resolver = "3"
 members = [
-    "core",
-    "web"
+    "plural-export",
+    "plural-export-macros",
+    "plural-export-web"
 ]
 
 [profile.release]
@@ -11,6 +12,11 @@ lto = "thin"
 opt-level = 3
 panic = "unwind"
 strip = true
+
+[workspace.dependencies]
+plural-export = { path = "./plural-export" }
+plural-export-macros = { path = "./plural-export-macros" }
+plural-export-web = { path = "./plural-export-web" }
 
 [workspace.lints.rust]
 unsafe_code = "forbid"
